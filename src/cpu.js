@@ -11,7 +11,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { generateResultFileName, currentTimeString } = require('./shared');
+const { generateResultFileName, getCurrentTimestamp } = require('./shared');
 
 const DEFAULT_CPU_COUNT = 20; // 默认取前 n 组数据
 const CPU_MARKER_KEYWORD = '{page:';
@@ -66,7 +66,7 @@ const appendResultsToFile = (results, outputFile) => {
     let prefix = '';
     if (fs.existsSync(outputFile)) prefix = '\n\n';
 
-    const timestamp = currentTimeString ? currentTimeString() : new Date().toISOString();
+    const timestamp = getCurrentTimestamp();
     const content = `${prefix}${timestamp}\n${results.join('\n')}\n`;
 
     fs.appendFileSync(outputFile, content, 'utf8');

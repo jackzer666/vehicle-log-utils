@@ -11,7 +11,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { generateResultFileName, currentTimeString } = require('./shared');
+const { generateResultFileName, getCurrentTimestamp } = require('./shared');
 
 const PLAYBACK_START_KEY = "h5_call_bm_send_enter_page\\\",[\\\"player\\\"]]";
 const PLAYBACK_STATE_KEYS = [
@@ -85,7 +85,7 @@ const appendResultsToFile = (results, outputFile) => {
     let prefix = '';
     if (fs.existsSync(outputFile)) prefix = '\n\n';
 
-    const timestamp = currentTimeString ? currentTimeString() : new Date().toISOString();
+    const timestamp = getCurrentTimestamp();
     const isCsv = outputFile.endsWith('.csv');
     const separator = isCsv ? ',' : '\t';
     const contentLines = results.map(([t1, t2]) => `${t1}${separator}${t2}`).join('\n');
