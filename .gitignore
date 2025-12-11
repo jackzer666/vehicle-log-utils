@@ -1,0 +1,6 @@
+*.csv
+*.log
+*.txt
+*.text
+
+logs/
